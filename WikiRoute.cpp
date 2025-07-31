@@ -1,7 +1,6 @@
 #pragma once
 #
 #include "WikiRoute.h"
-#include "helpers.h"
 
 using namespace std;
 
@@ -28,7 +27,7 @@ void WikiRoute::fixWeights() {
 }
 
 
-string WikiRoute::closest(string from, unordered_set<string>finished, unordered_map<string, int> dist) {
+string WikiRoute::closest(unordered_set<string>finished, unordered_map<string, int> dist) {
     int minDist = 1e6+1;
     string minName;
 
@@ -55,14 +54,27 @@ vector<string> WikiRoute::recoverChain(string to, unordered_map<string, int> dis
     return output;
 }
 
-// Unfinished but should be finished soon
 vector<string> WikiRoute::dijkstra(string from, string to) {
     unordered_map<string, int> dist;
     unordered_map<string, string> parent;
     unordered_set<string> finished;
 
     for (string site : sites) {
-        
+        dist[site] = 1e6;
+    }
+    dist[from] = 0;
+    parent[from] = "thisisfrom";
+
+    while (finished.find(to) == finished.end()) {
+        string curr = closest(from, finished, dist);
+        finished.insert(curr);
+
+        for (string tempTo : adjList[curr]) {
+            if (dist[curr] + weights[curr+tempTo] < dist[tempTo]) {
+                dist[tempTo] = dist[curr] + weights[curr+tempTo];
+                parent[tempTo] = curr;
+            }
+        }
     }
 
     return recoverChain(to, dist, parent);
