@@ -91,9 +91,9 @@ vector<string> WikiRoute::dial(string from, string to) {
     dist[from] = 0;
     parent[from] = "thisisfrom";
 
-    vector<vector<string>> buckets(W*sites.size()+1); 
+    vector<vector<string>> buckets(W*sites.size()+1);
     //Note to self below - Abhay
-    //vector over hash table because we focused on processing smallest distance node 
+    //vector over hash table because we focused on processing smallest distance node
     //hash table is better for re-bucketing and if few nodes in each bucket
 
     buckets[0].push_back(from);
@@ -108,7 +108,6 @@ vector<string> WikiRoute::dial(string from, string to) {
 
         string curr = buckets[bucketIndex].back();
         buckets[bucketIndex].pop_back();
-        finished.insert(curr);
         if(finished.count(curr)) {
             continue;
         }
