@@ -1,4 +1,3 @@
-#pragma once
 #include "WikiRoute.h"
 #include <climits>
 
@@ -27,13 +26,13 @@ void WikiRoute::fixWeights() {
 }
 
 
-string WikiRoute::closest(unordered_set<string>finished, unordered_map<string, int> dist) {
+string WikiRoute::closest(const unordered_set<string>& finished, const unordered_map<string, int>& dist) {
     int minDist = 1e6+1;
     string minName;
 
     for (string site : sites) {
-        if (finished.find(site) == finished.end() && dist[site] < minDist) {
-            minDist = dist[site];
+        if (finished.find(site) == finished.end() && dist.at(site) < minDist) {
+            minDist = dist.at(site);
             minName = site;
         }
     }
@@ -65,9 +64,15 @@ vector<string> WikiRoute::dijkstra(string from, string to) {
     dist[from] = 0;
     parent[from] = "thisisfrom";
 
-    while (finished.find(to) == finished.end()) {
+    while (true) {
         string curr = closest(finished, dist);
+        if (curr.empty() || dist[curr] == 1e6) {
+            break; //no reachable vertex left
+        }
         finished.insert(curr);
+        if (curr == to) {
+            break;
+        }
 
         for (string tempTo : adjList[curr]) {
             if (dist[curr] + weights[curr+tempTo] < dist[tempTo]) {
@@ -76,6 +81,10 @@ vector<string> WikiRoute::dijkstra(string from, string to) {
             }
         }
     }
+
+    if (dist[to] == 1e6) {
+        return {};
+    } //if to is unreachable from from
 
     return recoverChain(to, dist, parent);
 }
@@ -123,6 +132,10 @@ vector<string> WikiRoute::dial(string from, string to) {
                 buckets[dist[tempTo]].push_back(tempTo);
             }
         }
+    }
+
+    if (dist[to] == INT_MAX) {
+        return {};
     }
     return recoverChain(to, dist, parent);
 }
