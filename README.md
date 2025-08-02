@@ -1,2 +1,0 @@
-# WikiRoute
-DSA Final Project
