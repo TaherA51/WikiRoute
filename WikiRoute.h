@@ -27,7 +27,7 @@ class WikiRoute {
 
     // Julian: I'll do dijkstra + some relevant helper functions (cant use libraries)
     // Helper functions for dijkstra
-    string closest(unordered_set<string>finished, unordered_map<string, int> dist);
+    string closest(const unordered_set<string>& finished, const unordered_map<string, int>& dist);
     vector<string> recoverChain(string to, unordered_map<string, int> dist, unordered_map<string, string> parent);
 
     // Output is the chain from from to to
