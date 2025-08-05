@@ -45,6 +45,3 @@ This will open a web browser where you can interact with Wikiroute application.
 ##  License
 
 MIT License. See [LICENSE](LICENSE) for details.
-
-```
-```
