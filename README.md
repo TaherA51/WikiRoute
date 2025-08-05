@@ -1,7 +1,7 @@
 
-# Wikipedia Graph Explorer
+# Project WikiRoute
 
-This project is a hybrid Python + C++ system for exploring Wikipedia as a graph. It lets you analyze connections between articles, run shortest-path algorithms (like Dijkstra’s and Dial’s), and interact with the graph using a Streamlit-based UI.
+This project is a hybrid Python + C++ system for exploring Wikipedia's top 100k ranked pages as a graph. It lets you analyze connections between articles, run shortest-path algorithms (like Dijkstra’s and Dial’s), and compare algorithm runtime stats in detail using a Streamlit based UI.
 
 ## Setup Instructions
 
