@@ -22,7 +22,15 @@ Ensure you have Python 3.8+ installed, then run:
 pip install -r requirements.txt
 ```
 
-### 3. Launch the Streamlit App
+### 3. Change Directories if Needed
+
+If you are running from the command prompt, change directories to the appropriate location with:
+
+```bash
+cd wiki-pathfinder
+```
+
+### 4. Launch the Streamlit App
 
 Start the UI with:
 
@@ -30,7 +38,7 @@ Start the UI with:
 streamlit run streamlit_app.py
 ```
 
-This will open a web browser where you can interact with the Wikipedia graph.
+This will open a web browser where you can interact with Wikiroute application.
 
 ---
 
