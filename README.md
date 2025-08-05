@@ -10,7 +10,7 @@ Follow these steps to get started:
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/TaherA51/streamlit_DSAFINAL_deploy.git
+git clone https://github.com/TaherA51/WikiRoute.git
 cd wiki-pathfinder
 ````
 
